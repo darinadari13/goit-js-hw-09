@@ -1,7 +1,7 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
-const defaultDate = new Date()
+const defaultDate = new Date();
 const button = document.querySelector('[data-start]');
 const daysSpan = document.querySelector('[data-days]');
 const hoursSpan = document.querySelector('[data-hours]');
@@ -19,7 +19,16 @@ function initTimer() {
 
   setTimerText()
 
-  setInterval(setTimerText, 1000)
+  const intervalId = setInterval(() => {
+    if (new Date() >= selectedDate) {
+      clearInterval(intervalId);
+    } else {
+      setTimerText();
+    }
+  }, 1000);
+
+
+
 }
 
 function setTimerText() {
